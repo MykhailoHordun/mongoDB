@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mongo_main:
+    image: mongo
+    container_name: mongo_main
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo_net
+    depends_on:
+      - config_server
+      - data_server
+      - data_replica
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+
+  config_server:
+    image: mongo
+    command: mongod --configsvr --replSet configReplSet
+    networks:
+      - mongo_net
+    deploy:
+      replicas: 3
+
+  data_server:
+    image: mongo
+    command: mongod --shardsvr --replSet dataSet
+    networks:
+      - mongo_net
+    deploy:
+      replicas: 4
+
+  data_replica:
+    image: mongo
+    command: mongod --shardsvr --replSet dataReplSet
+    networks:
+      - mongo_net
+    deploy:
+      replicas: 6
+
+networks:
+  mongo_net:
+    driver: bridge
