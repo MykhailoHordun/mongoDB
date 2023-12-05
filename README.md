@@ -5,4 +5,4 @@
 3. Open comand line;
 4. Open the folder containing the downloaded project;
 5. Write 'docker-compose up -d' command;
-6. Run all commands from HL_lab3.docx
+6. Run all commands from HL_lab3.pdf
