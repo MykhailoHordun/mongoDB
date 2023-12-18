@@ -31,8 +31,26 @@ db.rides.aggregate([
           as: "comment",
           in: {
             $replaceAll: {
-              input: { $replaceAll: { input: { $replaceAll: { input: { $replaceAll: { input: "$$comment", find: "[", replacement: "" } }, find: "]", replacement: "" } }, find: "\"", replacement: "" } },
-              find: "`",
+              input: { 
+                $replaceAll: { 
+                  input: { 
+                    $replaceAll: { 
+                      input: { 
+                        $replaceAll: { 
+                          input: "$$comment", 
+                          find: "[", 
+                          replacement: "" 
+                        } 
+                      }, 
+                      find: "]", 
+                      replacement: "" 
+                    } 
+                  }, 
+                  find: "'", 
+                  replacement: "" 
+                }
+              }, 
+              find: "`", 
               replacement: ""
             }
           }
