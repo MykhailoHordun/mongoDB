@@ -1,2 +1,3 @@
 sh.enableSharding('taxi')
-sh.shardCollection('taxi.rides', {start_latitude: "hashed"})
+db.rides.createIndex( { 'driver': 'hashed' }, { name: 'driver' } )
+sh.shardCollection('taxi.rides', { 'driver' : 'hashed' })

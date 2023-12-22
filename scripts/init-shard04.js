@@ -1,11 +1,13 @@
+//init-shard04.js
+
 rs.initiate(
    {
-      _id: "rs-shard-04",
+      _id: "shard04",
       version: 1,
       members: [
-         { _id: 0, host : "shard04-a:27017" },
-         { _id: 1, host : "shard04-b:27017" },
-         { _id: 2, host : "shard04-c:27017" }
+         { _id: 0, host : "shard04a:27021" },
+         { _id: 1, host : "shard04b:27021" },
+         { _id: 2, host : "shard04c:27021" },
       ]
    }
 )
